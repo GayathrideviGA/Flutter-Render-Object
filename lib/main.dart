@@ -1,29 +1,44 @@
 import 'package:flutter/material.dart';
 
-import 'src/custom_rect.dart';
+import 'src/multi_child_render.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Render Object Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      title: 'MyMultiChildWidget Demo',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('MyMultiChildWidget Demo'),
+        ),
+        body: Center(
+          child: MyMultiChildWidget(
+            children: [
+              Container(
+                width: 100,
+                height: 50,
+                color: Colors.red,
+              ),
+              Container(
+                width: 50,
+                height: 100,
+                color: Colors.green,
+              ),
+              Container(
+                width: 75,
+                height: 75,
+                color: Colors.blue,
+              ),
+            ],
+          ),
+        ),
       ),
-      home: const MyHomePage(),
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: CustomRect(value: 5.0)));
   }
 }
